@@ -14,6 +14,7 @@ public class Main {
         boolean isValid = false;
         boolean isRepeated;
         int finalValue = 0;
+        char[] columnTitleCharArray;
         Map<Character, Integer> alphabetMap = new HashMap<>();
 
         //init
@@ -54,18 +55,25 @@ public class Main {
             do {
                 System.out.println("Enter the column which you want to translate:");
                 columnTitle = sc.nextLine().toUpperCase();
+                columnTitleCharArray = columnTitle.toCharArray();
 
-                if (!columnTitle.isEmpty() && columnTitle.length() <= 7)
+                if (!columnTitle.isEmpty() && columnTitle.length() <= 7) {
                     isValid = true;
 
-                if (!isValid)
-                    System.out.println("Given column is not in range. Max. range is 7. Try again!:");
+                    for (char letter : columnTitleCharArray) {
+                        if (!Character.isLetter(letter)) {
 
+                            isValid = false;
+                            System.out.println("Given value must be only English letters");
+                        }
+                    }
+
+                } else {
+                    System.out.println("Given column is not in range. Max. range is 7. Try again!:");
+                }
             } while (!isValid);
 
             // translator logic
-            char[] columnTitleCharArray = columnTitle.toCharArray();
-
             for (int i = 0; i < columnTitle.length(); i++) {
                 int value;
 
