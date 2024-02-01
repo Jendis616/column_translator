@@ -10,8 +10,9 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         String columnTitle;
         final int maxAlphabetLength = 26;
+        final int maxColumnNumberLimit = 2597;
         boolean isValid = false;
-        boolean isRepeated = false;
+        boolean isRepeated;
         int finalValue = 0;
         Map<Character, Integer> alphabetMap = new HashMap<>();
 
@@ -43,11 +44,13 @@ public class Main {
         alphabetMap.put('Y', 25);
         alphabetMap.put('Z', 26);
 
-        // user's input
+        // main loop
         System.out.println("Hello and welcome!");
         do {
             finalValue = 0;
+            isRepeated = false;
 
+            //user's input
             do {
                 System.out.println("Enter the letter which you want to translate:");
                 columnTitle = sc.nextLine().toUpperCase();
@@ -62,25 +65,26 @@ public class Main {
 
             // translator logic
             char[] columnTitleCharArray = columnTitle.toCharArray();
-            for (int i = 0; i < columnTitle.length(); i++) {
 
+            for (int i = 0; i < columnTitle.length(); i++) {
                 int value;
 
-                if (i == columnTitle.length() - 1) {
-
+                if (i == columnTitle.length() - 1)
                     value = alphabetMap.get(columnTitleCharArray[i]);
-
-                } else {
-
+                else
                     value = maxAlphabetLength * alphabetMap.get(columnTitleCharArray[i]);
-                }
 
                 finalValue += value;
             }
 
-            System.out.printf("Your column number is %d \n", finalValue);
+            if (finalValue > maxColumnNumberLimit)
+                System.out.println("Entered value oversize the limit. Max. column title is FXSHRXW");
+            else
+                System.out.printf("Your column number is %d \n", finalValue);
 
             System.out.println("Repeat? [Y/N]");
+
+            //
             String answer = sc.nextLine();
             if (answer.contains("Y"))
                 isRepeated = true;
