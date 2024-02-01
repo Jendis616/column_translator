@@ -52,14 +52,14 @@ public class Main {
 
             //user's input
             do {
-                System.out.println("Enter the letter which you want to translate:");
+                System.out.println("Enter the column which you want to translate:");
                 columnTitle = sc.nextLine().toUpperCase();
 
                 if (!columnTitle.isEmpty() && columnTitle.length() <= 7)
                     isValid = true;
 
                 if (!isValid)
-                    System.out.println("Given letter is not in range. Try again!:");
+                    System.out.println("Given column is not in range. Max. range is 7. Try again!:");
 
             } while (!isValid);
 
@@ -78,7 +78,7 @@ public class Main {
             }
 
             if (finalValue > maxColumnNumberLimit)
-                System.out.println("Entered value oversize the limit. Max. column title is FXSHRXW");
+                System.out.println("Entered value oversize the limit. Max. possible value is FXSHRXW");
             else
                 System.out.printf("Your column number is %d \n", finalValue);
 
