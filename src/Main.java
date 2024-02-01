@@ -62,12 +62,10 @@ public class Main {
 
                     for (char letter : columnTitleCharArray) {
                         if (!Character.isLetter(letter)) {
-
                             isValid = false;
                             System.out.println("Given value must be only English letters");
                         }
                     }
-
                 } else {
                     System.out.println("Given column is not in range. Max. range is 7. Try again!:");
                 }
