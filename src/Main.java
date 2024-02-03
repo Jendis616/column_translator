@@ -2,14 +2,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
         String columnTitle;
         final int maxAlphabetLength = 26;
+        final int maxDoubledAlphabet = 702;
         final int maxColumnNumberLimit = 2597;
         boolean isValid = false;
         boolean isRepeated;
@@ -53,7 +52,7 @@ public class Main {
 
             //user's input
             do {
-                System.out.println("Enter the column which you want to translate:");
+                System.out.println("Enter the column you want to translate:");
                 columnTitle = sc.nextLine().toUpperCase();
                 columnTitleCharArray = columnTitle.toCharArray();
 
@@ -71,22 +70,18 @@ public class Main {
                 }
             } while (!isValid);
 
+            int value = 0;
             // translator logic
-            for (int i = 0; i < columnTitle.length(); i++) {
-                int value;
+            for (char title : columnTitleCharArray) {
 
-                if (i == columnTitle.length() - 1)
-                    value = alphabetMap.get(columnTitleCharArray[i]);
-                else
-                    value = maxAlphabetLength * alphabetMap.get(columnTitleCharArray[i]);
-
-                finalValue += value;
+                value = value * maxAlphabetLength + ((int) title - 64);
             }
 
-            if (finalValue > maxColumnNumberLimit)
-                System.out.println("Entered value oversize the limit. Max. possible value is FXSHRXW");
-            else
-                System.out.printf("Your column number is %d \n", finalValue);
+
+            //if (value > maxColumnNumberLimit)
+            //    System.out.println("Entered value oversize the limit. Max. possible value is FXSHRXW");
+            //else
+                System.out.printf("Your column number is %d \n", value);
 
             System.out.println("Repeat? [Y/N]");
 
